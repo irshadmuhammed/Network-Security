@@ -1,5 +1,6 @@
-from NetworkSecurity.entity.config_entity import DataIngestionConfig,DataValidationConfig
+from NetworkSecurity.entity.config_entity import DataIngestionConfig, DataTransformationConfig,DataValidationConfig
 from NetworkSecurity.components.data_validation import DataValidation
+from NetworkSecurity.components.data_transformation import DataTransformation
 from NetworkSecurity.Exception.exception import NetworkSecurityException
 from NetworkSecurity.components.data_ingestion import DataIngestion
 from NetworkSecurity.logging.logger import logging
@@ -24,6 +25,14 @@ if __name__ == "__main__":
         logging.info("Data validation initiated")
         print(data_validation_artifact)
         logging.info("Data validation completed")
+
+        logging.info("Data transformation started")
+        data_transfromation_config = DataTransformationConfig(training_pipeline_config)
+        data_transfromation = DataTransformation(data_validation_artifact,data_transfromation_config)
+        data_transformation_artifact = data_transfromation.initiate_data_transformation()
+        logging.info("Data transformation initiated")
+        print(data_transformation_artifact)
+        logging.info("Data transformation completed")   
         
     except Exception as e:
         raise NetworkSecurityException(e,sys)
