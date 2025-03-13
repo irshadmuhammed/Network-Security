@@ -25,8 +25,9 @@ from sklearn.ensemble import (
 import mlflow
 # from urllib.parse import urlparse
 
-# import dagshub
-#dagshub.init(repo_owner='krishnaik06', repo_name='networksecurity', mlflow=True)
+import dagshub
+dagshub.init(repo_owner='irshadmuhammed', repo_name='Network-Security', mlflow=True)
+
 
 # os.environ["MLFLOW_TRACKING_URI"]="https://dagshub.com/krishnaik06/networksecurity.mlflow"
 # os.environ["MLFLOW_TRACKING_USERNAME"]="krishnaik06"
@@ -137,8 +138,9 @@ class ModelTrainer:
         Network_Model=NetworkModel(preprocessor=preprocessor,model=best_model)
         logging.info(f"saving model to {self.model_trainer_config.trained_model_file_path}")
         save_pickle(self.model_trainer_config.trained_model_file_path,NetworkModel)
+        
         #model pusher
-        #save_object("final_model/model.pkl",best_model)
+        save_pickle("final_model/model.pkl",best_model)
         logging.info(f"Model saved to {self.model_trainer_config.trained_model_file_path}")
         
 
